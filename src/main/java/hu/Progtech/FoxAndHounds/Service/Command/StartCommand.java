@@ -6,7 +6,9 @@ import hu.Progtech.FoxAndHounds.Model.GameState;
 import hu.Progtech.FoxAndHounds.Model.MapVO;
 import hu.Progtech.FoxAndHounds.Service.Exception.MapBuildingException;
 import hu.Progtech.FoxAndHounds.Service.Map.MapBuilder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class StartCommand {
 
     public GameState startGame() throws MapBuildingException {

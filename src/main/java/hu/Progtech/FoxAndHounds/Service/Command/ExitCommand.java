@@ -2,7 +2,9 @@ package hu.Progtech.FoxAndHounds.Service.Command;
 
 import hu.Progtech.FoxAndHounds.Service.Exception.ExitException;
 import hu.Progtech.FoxAndHounds.Model.GameState;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ExitCommand {
 
     private GameState gameState;

@@ -10,67 +10,6 @@ public class RandomHoundTest {
 
     private RandomHound underTest;
 
-    private char[][] map = {
-            {'X', 'H', 'X', 'H'},
-            {'_', 'X', '_', 'X'},
-            {'X', '_', 'X', '_'},
-            {'F', 'X', '_', 'X'},
-    };
-    private char[][] expectedMap = {
-            {'X', '_', 'X', 'H'},
-            {'_', 'X', 'H', 'X'},
-            {'X', '_', 'X', '_'},
-            {'F', 'X', '_', 'X'}
-    };
-    private MapVO mapVO = new MapVO(4, map);
-    private MapVO expectedMapVO = new MapVO(4, expectedMap);
-    private int[] fox = {3, 0};
-    private int[][] hounds = {{0, 1}, {0, 3}};
-    private int[][] expectedHounds = {{1, 2}, {0, 3}};
-    private GameState inGameState = new GameState(mapVO, true, true, fox, hounds);
-    private GameState expectedGameState = new GameState(expectedMapVO, true, true, fox, expectedHounds);
-
-    @Test
-    public void testRandomHoundShouldReturnCorrectGameStateWhenHoundInUpRightCorner() {
-        //given
-        underTest = new RandomHound(inGameState);
-
-        //when
-        GameState result = underTest.randomHound();
-
-        //then
-        assertEquals(expectedGameState.getMapVO().toString(), result.getMapVO().toString());
-    };
-    private char[][] inOneMap = {
-            {'X', '_', 'X', 'H'},
-            {'H', 'X', '_', 'X'},
-            {'X', '_', 'X', '_'},
-            {'F', 'X', '_', 'X'},
-    };
-    private char[][] expectedOneMap = {
-            {'X', '_', 'X', 'H'},
-            {'_', 'X', '_', 'X'},
-            {'X', 'H', 'X', '_'},
-            {'F', 'X', '_', 'X'}
-    };
-    private MapVO inOneMapVO = new MapVO(4, inOneMap);
-    private MapVO expectedOneMapVO = new MapVO(4, expectedOneMap);
-    private int[][] inOneHounds = {{1, 0}, {0, 3}};
-    private int[][] expectedOneHounds = {{2, 1}, {0, 3}};
-    private GameState inOneGameState = new GameState(inOneMapVO, true, true, fox, inOneHounds);
-    private GameState expectedOneGameState = new GameState(expectedOneMapVO, true, true, fox, expectedOneHounds);
-
-    @Test
-    public void testRandomHoundShouldReturnCorrectGameStateWhenHoundLeftSide() {
-        //given
-        underTest = new RandomHound(inOneGameState);
-
-        //when
-        GameState result = underTest.randomHound();
-
-        //then
-        assertEquals(expectedOneGameState.getMapVO().toString(), result.getMapVO().toString());
-    }
     private char[][] inOneRightMap = {
             {'X', '_', 'X', 'H'},
             {'H', 'X', '_', 'X'},
@@ -101,5 +40,36 @@ public class RandomHoundTest {
 
         //then
         assertEquals(expectedOneRightGameState.getMapVO().toString(), result.getMapVO().toString());
+    }
+    private char[][] inOneLeftMap = {
+            {'X', '_', 'X', 'H'},
+            {'H', 'X', 'F', 'X'},
+            {'X', '_', 'X', '_'},
+            {'_', 'X', '_', 'X'},
+    };
+    private char[][] expectedLeftOneMap = {
+            {'X', '_', 'X', 'H'},
+            {'_', 'X', 'F', 'X'},
+            {'X', 'H', 'X', '_'},
+            {'_', 'X', '_', 'X'}
+    };
+    private MapVO inOneLeftMapVO = new MapVO(4, inOneLeftMap);
+    private MapVO expectedOneLeftMapVO = new MapVO(4, expectedLeftOneMap);
+    private int[] oneLeftFox = {1, 2};
+    private int[][] inOneLeftHounds = {{1, 0}, {0, 3}};
+    private int[][] expectedOneLeftHounds = {{2, 1}, {0, 3}};
+    private GameState inOneLeftGameState = new GameState(inOneLeftMapVO, true, true, oneLeftFox, inOneLeftHounds);
+    private GameState expectedOneLeftGameState = new GameState(expectedOneLeftMapVO, true, true, oneLeftFox, expectedOneLeftHounds);
+
+    @Test
+    public void testRandomHoundShouldReturnCorrectGameStateWhenHoundRightSideButCantStepLeft() {
+        //given
+        underTest = new RandomHound(inOneLeftGameState);
+
+        //when
+        GameState result = underTest.randomHound();
+
+        //then
+        assertEquals(expectedOneLeftGameState.getMapVO().toString(), result.getMapVO().toString());
     }
 }

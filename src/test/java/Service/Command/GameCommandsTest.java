@@ -6,8 +6,10 @@ import hu.Progtech.FoxAndHounds.Service.Command.GameCommands;
 import hu.Progtech.FoxAndHounds.Service.Exception.ExitException;
 import hu.Progtech.FoxAndHounds.Service.Exception.MapBuildingException;
 import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameCommandsTest {
@@ -104,16 +106,5 @@ public class GameCommandsTest {
 
         //then
         assertEquals(expectedGameState.toString(), result.toString());
-    }
-    @Test
-    public void testCheckCommandShouldGiveBackGameStateAfterRandomHound() throws MapBuildingException, ExitException {
-        //given
-        underTest = new GameCommands(goodStepCommand, expectedGameState);
-
-        //when
-        GameState result = underTest.checkCommand();
-
-        //then
-        assertEquals(randomHoundGameState.getMapVO().toString(), result.getMapVO().toString());
     }
 }

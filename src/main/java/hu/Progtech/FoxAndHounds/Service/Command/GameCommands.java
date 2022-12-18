@@ -21,7 +21,6 @@ public class GameCommands {
         return splitCommand;
     }
 
-
     public GameState checkCommand() throws MapBuildingException, ExitException {
         String[] splitedCommand = splitCommand();
         switch (splitedCommand[0]) {
@@ -35,7 +34,8 @@ public class GameCommands {
                         gameState = new RandomHound(gameState).randomHound();
                     }
                     return gameState;
-                } else {
+                }
+                else {
                     System.out.println("Wrong step command!");
                     return gameState;
                 }
